@@ -58,13 +58,13 @@ To demonstrate this step, I will describe how I apply the distortion correction 
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 
-I used a combination of color and gradient thresholds to generate a binary image (thresholding steps in function `final_pipeline` in notebook `Final_Pipeline.ipynb`).  Here's an example of my output for this step. 
+I used a combination of color and gradient thresholds to generate a binary image (thresholding steps in function `threshold_pipeline` in notebook `Final_Pipeline.ipynb`).  Here's an example of my output for this step. 
 
 ![Binary Image][image3]
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
-The code for my perspective transform includes a function called `warper()`, which appears in lines 1 through 8 in the file `example.py` (output_images/examples/example.py) (or, for example, in the 3rd code cell of the IPython notebook).  The `warper()` function takes as inputs an image (`img`), as well as source (`src`) and destination (`dst`) points.  I chose the hardcode the source and destination points in the following manner:
+The code for my perspective transform includes a function called `warp()`, which appears in  `Final_Pipeline.ipynb`.  The `warp()` function takes as inputs an image (`img`). I chose to hardcode the source and destination points in the following manner:
 
 ```python
 source_pts = np.array([ [0 + 175, dst.shape[0]], [590, 450], [700, 450], [1170, dst.shape[0]] ], np.float32)
@@ -121,3 +121,9 @@ And for color, I took HLS color space for yellow and HSV for white. There were s
 To make it more robust, I could experiment with more colorspaces (maybe LAB)  and try out different combinations of these thresholds.
 In addition to this I could try various combination of thresholding for gradient of the images.
 
+I identified lane line pixels using a sliding window search method. And then fit a second order polynomial using these points for each lane. An improvement I could make to this method, is to play around with the margin, min_pixel and nWindows parameters to improve pixel finding accuracy. 
+
+Using this fit, I calculated a set of fitted_x points for each lane (using the y co-ordinates ranging from 1 to the height of the image). Finally I plotted these fittedx points on the image. 
+
+Finally, I created a `Line()` class to keep track of the properties (such as previous fittedx pixels, previous fit co-efficient etc.).
+An improvement I can make using this information, could be to apply a criteria in my sanity check, that looks for large differences in these co-efficients over frames. If there is a large difference, then I dont update my lines with the information from this frame. I can also tweak the number of previous frames over which I average to get the best fitted_x pixels for both lanes.
