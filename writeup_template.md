@@ -15,13 +15,13 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./writeup_images/calibrationexample.jpg "Undistorted"
-[image2]: ./writeup_images/undistort.jpg "Road Transformed"
-[image3]: ./writeup_images/threshold.jpg "Binary Example"
-[image4]: ./writeup_images/warped.jpg "Warp Example"
-[image5]: .writeup_images/Fit_Visual.jpg "Fit Visual"
-[image6]: .writeup_images/Output.jpg "Output"
-[video1]: ./project_video.mp4 "Video"
+[image1]: .Images/writeup_images/calibrationexample.jpg "Undistorted"
+[image2]: .Images/writeup_images/undistort.jpg "Road Transformed"
+[image3]: .Images/writeup_images/threshold.jpg "Binary Example"
+[image4]: .Images/writeup_images/warped.jpg "Warp Example"
+[image5]: .Images/writeup_images/Fit_Visual.jpg "Fit Visual"
+[image6]: .Images/writeup_images/Output.jpg "Output"
+[video1]: ./project_video_solution.mp4 "Video"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
 
@@ -45,13 +45,15 @@ I start by preparing "object points", which will be the (x, y, z) coordinates of
 
 I then used the output `objpoints` and `imgpoints` to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function.  I applied this distortion correction to the test image using the `cv2.undistort()` function and obtained this result: 
 
+
 ![alt text][image1]
 
-### Pipeline (single images)
+###  Pipeline (single images)
 
-#### 1. Provide an example of a distortion-corrected image.
+####  1. Provide an example of a distortion-corrected image.
 
 To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
+
 ![alt text][image2]
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
