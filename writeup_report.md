@@ -117,13 +117,6 @@ Here's a [link to my video result](./project_video_solution.mp4)
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 For the various parts of this project, I shall briefly outline the steps I took.
 For thresholding, I took a combination of SobelX, SobelY, Magnitude Gradient and Direction thresholding for the gradients of the image.
-And for color, I took HLS color space for yellow and HSV for white. There were some issues, in this as it is not so robust to shade and lighting, and may struggle in extreme conditions like snow.
-To make it more robust, I could experiment with more colorspaces (maybe LAB)  and try out different combinations of these thresholds.
-In addition to this I could try various combination of thresholding for gradient of the images.
+And for color, I took HLS color space for yellow and HSV for white. The model fails when the image contains shades, and it will fail under many circumstances such as harsh weather conditions (snow, rain, fog, etc). In order to improve the model to successfully identify the lanes under these conditions, we need to use a better way of thresholding images.
 
-I identified lane line pixels using a sliding window search method. And then fit a second order polynomial using these points for each lane. An improvement I could make to this method, is to play around with the margin, min_pixel and nWindows parameters to improve pixel finding accuracy. 
 
-Using this fit, I calculated a set of fitted_x points for each lane (using the y co-ordinates ranging from 1 to the height of the image). Finally I plotted these fittedx points on the image. 
-
-Finally, I created a `Line()` class to keep track of the properties (such as previous fittedx pixels, previous fit co-efficient etc.).
-An improvement I can make using this information, could be to apply a criteria in my sanity check, that looks for large differences in these co-efficients over frames. If there is a large difference, then I dont update my lines with the information from this frame. I can also tweak the number of previous frames over which I average to get the best fitted_x pixels for both lanes.
