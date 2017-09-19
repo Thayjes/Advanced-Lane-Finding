@@ -107,7 +107,7 @@ I implemented this step in `Lines_Class.ipynb` in the function `draw_poly()`.  H
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 
-Here's a [link to my video result](./project_video_solution.mp4)
+Here's a [link to my video result](./project_video_solution_2.mp4)
 
 
 ---
